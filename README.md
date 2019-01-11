@@ -1,1 +1,1 @@
-Spring MVC + JPA + H2
+Spring MVC + JPA + H2 Database 
