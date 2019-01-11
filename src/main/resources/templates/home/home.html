@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html layout:decorator="layout/layout" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <title layout:fragment="title" th:text="Home"></title>
+</head>
+
+<body>
+   <div id="main" layout:fragment="content">
+    <p><input type="button"  class="btn btn-primary btn-sm" value="Visualizar Carrinho" onclick="javascript:window.location='/mvc/produtos?car'" /></p>
+    <table class="table table-striped table-bordered">
+        <caption class="text-center lead" th:text="Produtos"></caption>
+        <thead>
+            <tr>
+                <th scope="col" th:text="Nome">Nome</th>
+                <th scope="col" th:text="Preço">Preço</th>
+                <th scope="col" th:text="País">País</th>
+                <th scope="col" th:text="Detalhes">Mais informações...</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="produto : ${produtos}">
+
+                <td th:text="${produto.nome}">nome</td>
+                <td th:text="${produto.preco}">preco</td>
+                <td th:text="${produto.pais}">pais</td>
+                
+                <td> <a th:href="@{produtos/detalhes/} + ${produto.produtoId}" th:text="Detalhes"></a>
+	            </td>
+         
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</body>
+</html>
