@@ -1,10 +1,14 @@
 package br.com.sample;
 
+import org.h2.server.web.WebServlet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.embedded.ServletRegistrationBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
+
 import br.com.sample.model.Produto;
 import br.com.sample.services.ProdutoService;
 
@@ -32,6 +36,14 @@ public class Application implements CommandLineRunner{
 		produtoService.add(new Produto("Vallontano Chardonnay", "69.9", "Vallontano", "Brasil", "Vale dos Vinhedos", "2017", "Branco Seco", "Chardonnay(100%)", "12", "750ml"));
 		produtoService.add(new Produto("Zeltinger Riesling S-O Kabinett", "202.54", "Selbach Oster", "Alemanha", "Alemanha", "2014", "Branco Seco", "Riesling", "11", "750ml"));
 	}
+	
+	@Bean
+	public ServletRegistrationBean h2servletRegistration() {
+	    ServletRegistrationBean registration = new ServletRegistrationBean(new WebServlet());
+	    registration.addUrlMappings("/console/*");
+	    return registration;
+	}
+	
 }
 
 

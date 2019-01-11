@@ -12,9 +12,10 @@ public class Compra {
     
 	public Compra() {}
 	
-	public Compra(Long quantidade, String produto) {
+	public Compra(Long quantidade, String produto, Long idproduto) {
 		this.quantidade = quantidade;
 		this.produto = produto;
+		this.produtoId = idproduto;
 	}
 	
 	@Id
@@ -27,6 +28,9 @@ public class Compra {
     @Column
     private String produto;
 
+    @Column
+    private long produtoId;
+    
 	public long getCarrinhoId() {
 		return carrinhoId;
 	}
@@ -49,5 +53,13 @@ public class Compra {
 
 	public void setProduto(String produto) {
 		this.produto = produto;
+	}
+	
+	public long getProdutoId() {
+		return produtoId;
+	}
+
+	public void setProdutoId(long produtoId) {
+		this.produtoId = produtoId;
 	}
 }
