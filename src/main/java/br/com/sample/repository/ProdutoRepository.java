@@ -9,4 +9,7 @@ import br.com.sample.model.Produto;
 @Repository
 @Transactional
 public interface ProdutoRepository extends CrudRepository<Produto, Long> {
+	
+	Produto getByNome(String nome);
+	
 }

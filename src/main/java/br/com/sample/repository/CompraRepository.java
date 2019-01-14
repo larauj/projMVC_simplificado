@@ -9,5 +9,4 @@ import br.com.sample.model.Compra;
 @Repository
 @Transactional
 public interface CompraRepository extends CrudRepository<Compra, Long> {
-	Compra getByProduto(String produto); 
 }

@@ -5,23 +5,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import br.com.sample.model.Carrinho;
 import br.com.sample.services.CarrinhoService;
-import br.com.sample.services.ProdutoService;
+
 
 @Controller
-@RequestMapping("/mvc/home")
-public class HomeController {
+@RequestMapping("/mvc/compra")
+public class CompraController {
     
-	@Autowired
-    ProdutoService produtoService;
 	
 	@Autowired
     CarrinhoService carrinhoService;
-
-	 @RequestMapping(method=RequestMethod.GET)
-	    public String produtos(Model model) {
-	        model.addAttribute("produtos", produtoService.getAll());
-	        return "home/home";
-	 }
-
+		 
+  
 }

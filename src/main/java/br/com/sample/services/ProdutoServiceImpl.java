@@ -48,4 +48,9 @@ public class ProdutoServiceImpl implements ProdutoService  {
     public void addList (List<Produto> produtos) {
     	produtoRepository.save(produtos);
     }
+
+	@Override
+	public Produto getByNome(String nome) {
+		return produtoRepository.getByNome(nome);
+	}
 }

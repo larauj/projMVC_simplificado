@@ -1,5 +1,7 @@
 package br.com.sample.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,54 +14,56 @@ public class Compra {
     
 	public Compra() {}
 	
-	public Compra(Long quantidade, String produto, Long idproduto) {
-		this.quantidade = quantidade;
-		this.produto = produto;
-		this.produtoId = idproduto;
+	public Compra(Long qtTotalItens, Double valorCompra) {
+		this.qtTotalItens = qtTotalItens;
+		this.valorCompra = valorCompra;
 	}
 	
 	@Id
     @GeneratedValue
-    private long carrinhoId;
+    private long compraId;
 
     @Column
-    private Long quantidade;
-
-    @Column
-    private String produto;
-
-    @Column
-    private long produtoId;
-    
-	public long getCarrinhoId() {
-		return carrinhoId;
-	}
-
-	public void setCarrinhoId(long carrinhoId) {
-		this.carrinhoId = carrinhoId;
-	}
-
-	public Long getQuantidade() {
-		return quantidade;
-	}
-
-	public void setQuantidade(Long quantidade) {
-		this.quantidade = quantidade;
-	}
-
-	public String getProduto() {
-		return produto;
-	}
-
-	public void setProduto(String produto) {
-		this.produto = produto;
-	}
+    private Long qtTotalItens;
 	
-	public long getProdutoId() {
-		return produtoId;
+    @Column
+    private Double valorCompra;
+
+    @Column
+    private Date dtCompra = new Date();
+
+	public long getCompraId() {
+		return compraId;
 	}
 
-	public void setProdutoId(long produtoId) {
-		this.produtoId = produtoId;
+	public void setCompraId(long compraId) {
+		this.compraId = compraId;
 	}
+
+	public Long getQtTotalItens() {
+		return qtTotalItens;
+	}
+
+	public void setQtTotalItens(Long qtTotalItens) {
+		this.qtTotalItens = qtTotalItens;
+	}
+
+	public Double getValorCompra() {
+		return valorCompra;
+	}
+
+	public void setValorCompra(Double valorCompra) {
+		this.valorCompra = valorCompra;
+	}
+
+	public Date getDtCompra() {
+		return dtCompra;
+	}
+
+	public void setDtCompra(Date dtCompra) {
+		this.dtCompra = dtCompra;
+	}
+
+    
+    
 }

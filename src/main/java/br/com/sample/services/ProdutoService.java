@@ -12,4 +12,5 @@ public interface ProdutoService {
     void delete(Produto produto);
     long count();
     void addList (List<Produto> produtos);
+    Produto getByNome(String nome);
 }

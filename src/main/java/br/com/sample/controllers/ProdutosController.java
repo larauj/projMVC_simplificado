@@ -1,5 +1,6 @@
 package br.com.sample.controllers;
 
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.sample.model.Carrinho;
 import br.com.sample.model.Produto;
+import br.com.sample.model.Compra;
+
 import br.com.sample.services.CarrinhoService;
 import br.com.sample.services.ProdutoService;
+import br.com.sample.services.CompraService;
 
 @Controller
 @RequestMapping("/mvc/produtos")
@@ -25,6 +29,9 @@ public class ProdutosController {
 	
 	@Autowired
     CarrinhoService carrinhoService;
+	
+	@Autowired
+    CompraService compraService;
 
     @RequestMapping(method=RequestMethod.GET)
     public String produtos(Model model) {
@@ -51,6 +58,20 @@ public class ProdutosController {
     	});
     	model.addAttribute("carrinhos", carrinhoService.getAll());
     	return "carrinho/carrinhos";
+    }
+    
+    
+    @RequestMapping(value = "/finalizarCompra", method=RequestMethod.GET)
+    public String finalizarCompra(Model model) {
+    	Double valorTotal = 0.0;
+    	Long qtTotalItens = 0L;
+    	for(Carrinho c : carrinhoService.getAll()) {
+    		Produto p = produtoService.getByNome(c.getProduto());
+    		valorTotal += c.getQuantidade() * Double.parseDouble(p.getPreco());
+    		qtTotalItens += c.getQuantidade();
+    	}
+    	compraService.add(new Compra(qtTotalItens, valorTotal));
+    	return "redirect:/mvc/home";
     }
     
     @RequestMapping(value = "/addCar/{produtoId}", method=RequestMethod.GET)

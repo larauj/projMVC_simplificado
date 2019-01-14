@@ -46,13 +46,4 @@ public class CompraServiceImpl implements CompraService  {
         return CompraRepository.count();
     }
 
-    @Override
-    public void addList (List<Compra> produtos) {
-    		CompraRepository.save(produtos);
-    }
-    
-    @Override
-    public Compra getByProduto (String produto) {
-    		return CompraRepository.getByProduto(produto);
-    }
 }
